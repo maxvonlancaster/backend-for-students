@@ -29,7 +29,7 @@ app.put("/api/items/:id", authRequired, updateItem);
 app.delete("/api/items/:id", authRequired, deleteItem);
 
 const PORT = process.env.PORT || 5000;
-const MONGO_URI = process.env.MONGO_URI || "mongodb://localhost:27017/myapp";
+const MONGO_URI = process.env.MONGO_URI;
 
 connectDB(MONGO_URI);
 
