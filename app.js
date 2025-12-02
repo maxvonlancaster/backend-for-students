@@ -1,7 +1,7 @@
 import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
-import { register, login } from "./controllers/authController";
+import { register, login } from "./controllers/authController.js";
 import { authRequired } from "./middleware/authMiddleware.js";
 import { createItem, getItems, getItemsByUser, getItemById, updateItem, deleteItem } from "./controllers/itemController.js";
 import { connectDB } from "./services/db.js";
