@@ -1,4 +1,4 @@
-import { Item } from "../entities/item.js";
+import Item from "../entities/item.js";
 
 export const createItem = async (req, res) => {
     try {

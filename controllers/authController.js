@@ -1,6 +1,6 @@
 import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt";
-import { User } from "../entities/user.js";
+import User from "../entities/user.js";
 
 export const register = async (req, res) => {
   try {
