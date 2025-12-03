@@ -4,7 +4,7 @@ import User from "../entities/user.js";
 
 export const register = async (req, res) => {
   try {
-    const { username, password } = req.body;
+    const { username, password, email } = req.body;
 
     const existingUser = await User.findOne({ username });
     if (existingUser) {
@@ -16,6 +16,7 @@ export const register = async (req, res) => {
     const newUser = new User({
       username,
       password: hashedPassword,
+      email: email
     });
     await newUser.save();
 
