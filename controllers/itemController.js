@@ -35,7 +35,7 @@ export const getItemsQuery = async (req, res) => {
             query.price = { ...query.price, $lte: Number(maxPrice) };
         }
         
-        const items = await Item.find(query).populate('userId', 'username email');
+        let items = await Item.find(query).populate('userId', 'username email');
 
         if (sorting) {
             items = items.sort((a, b) => {
