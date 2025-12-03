@@ -20,6 +20,39 @@ export const getItems = async (req, res) => {
     }
 };
 
+export const getItemsQuery = async (req, res) => {
+    try {
+        const { search, minPrice, maxPrice, sorting } = req.query;
+        let query = {};
+        if (search) {
+            query.name = { $regex: search, $options: "i" };
+        }
+        if (minPrice) {
+            query.price = { ...query.price, $gte: Number(minPrice) };
+        }
+        if (maxPrice) {
+            query.price = { ...query.price, $lte: Number(maxPrice) };
+        }
+        
+        const items = await Item.find(query).populate('userId', 'username email');
+
+        if (sorting) {
+            items = items.sort((a, b) => {
+                if (sorting === "price_asc") return a.price - b.price;
+                if (sorting === "price_desc") return b.price - a.price;
+                if (sorting === "name_asc") return a.name.localeCompare(b.name);
+                if (sorting === "name_desc") return b.name.localeCompare(a.name);
+                return 0;
+            });
+        }
+        res.status(200).json(items);
+
+    }
+    catch(error){
+        res.status(500).json({ message: "Error fetching items with query", error });
+    }
+}
+
 export const getItemsByUser = async (req, res) => {
     try {
         const { userId } = req.params;
