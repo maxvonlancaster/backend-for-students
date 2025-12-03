@@ -3,7 +3,7 @@ import cors from "cors";
 import dotenv from "dotenv";
 import { register, login } from "./controllers/authController.js";
 import { authRequired } from "./middleware/authMiddleware.js";
-import { createItem, getItems, getItemsByUser, getItemById, updateItem, deleteItem } from "./controllers/itemController.js";
+import { createItem, getItems, getItemsQuery, getItemsByUser, getItemById, updateItem, deleteItem } from "./controllers/itemController.js";
 import { connectDB } from "./services/db.js";
 
 dotenv.config();
@@ -23,6 +23,7 @@ app.post("/api/register", register);
 app.post("/api/login", login);
 app.post("/api/items", authRequired, createItem);
 app.get("/api/items", getItems);
+app.get("/api/items-query", getItemsQuery);
 app.get("/api/items/user/:userId", getItemsByUser);
 app.get("/api/items/:id", getItemById);
 app.put("/api/items/:id", authRequired, updateItem);
