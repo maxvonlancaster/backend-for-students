@@ -4,6 +4,7 @@ import dotenv from "dotenv";
 import { register, login } from "./controllers/authController.js";
 import { authRequired } from "./middleware/authMiddleware.js";
 import { createItem, getItems, getItemsQuery, getItemsByUser, getItemById, updateItem, deleteItem } from "./controllers/itemController.js";
+import { createComment, getComments, getCommentsByCategory } from "./controllers/commentController.js";
 import { connectDB } from "./services/db.js";
 
 dotenv.config();
@@ -28,6 +29,10 @@ app.get("/api/items/user/:userId", getItemsByUser);
 app.get("/api/items/:id", getItemById);
 app.put("/api/items/:id", authRequired, updateItem);
 app.delete("/api/items/:id", authRequired, deleteItem);
+
+app.post("/api/comments", createComment);
+app.get("/api/comments", getComments);
+app.get("/api/comments/:category", getCommentsByCategory);
 
 const PORT = process.env.PORT || 5000;
 const MONGO_URI = process.env.MONGO_URI;
