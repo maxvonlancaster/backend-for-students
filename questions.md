@@ -46,6 +46,11 @@ JS :
 - Query selector 
 - jQuery
 - Що таке CORS?
+- Event bubbling vs Event capturing
+- This в JS
+- Переваги Immediately Invoked Function Expression
+- .call(), .apply(), .bind()
+
 
 CSS :
 - SASS / Tailwind 
