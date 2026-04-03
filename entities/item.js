@@ -21,6 +21,11 @@ const itemSchema = new mongoose.Schema({
         type: Date,
         default: Date.now
     },
+    category:{
+        type: String,
+        trim: true,
+        default: "book-shop"
+    },
     userId: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "User",
