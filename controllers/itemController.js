@@ -23,10 +23,13 @@ export const getItems = async (req, res) => {
 
 export const getItemsQuery = async (req, res) => {
     try {
-        const { search, minPrice, maxPrice, sorting } = req.query;
+        const { search, minPrice, maxPrice, sorting, category } = req.query;
         let query = {};
         if (search) {
             query.name = { $regex: search, $options: "i" };
+        }
+        if (category) {
+            query.category = category;
         }
         if (minPrice) {
             query.price = { ...query.price, $gte: Number(minPrice) };
