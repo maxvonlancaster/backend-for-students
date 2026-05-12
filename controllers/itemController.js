@@ -2,9 +2,9 @@ import Item from "../entities/item.js";
 
 export const createItem = async (req, res) => {
     try {
-        const { name, description, price, category } = req.body;
+        const { name, description, price, category, image } = req.body;
         const { userId } = req.user;
-        const newItem = new Item({ name, description, price, category, userId });
+        const newItem = new Item({ name, description, price, category, image, userId });
         const savedItem = await newItem.save();
         res.status(201).json(savedItem);
     } catch (error) {

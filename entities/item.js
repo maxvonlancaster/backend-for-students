@@ -26,6 +26,11 @@ const itemSchema = new mongoose.Schema({
         trim: true,
         default: "book-shop"
     },
+    image: {
+        type: String,
+        trim: true,
+        default: ""
+    },
     userId: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "User",
